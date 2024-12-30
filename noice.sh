@@ -47,3 +47,20 @@ fi
 
 gsettings set org.cinnamon.desktop.interface icon-theme "${ICON}"
 echo "Icon theme set to ${ICON}"
+
+###Setting terminal theme
+id=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$id/ visible-name 'Default'
+
+cd gnome-terminal || git clone https://github.com/dracula/gnome-terminal | cd gnome-terminal
+./install.sh -s Dracula -p Default --skip-dircolors
+
+echo "Dracula theme installed for the Gnome Terminal"
+
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$id/ background-transparency-percent 10
+
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$id/ use-theme-transparency false
+
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$id/ use-transparent-background true
+echo "Transparency of terminal bg setted to 10%"
+
