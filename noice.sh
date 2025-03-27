@@ -127,33 +127,47 @@ fi
 
 ## Tema e Terminais
 if ((FLAG_WALLPAPER_ONLY==0)); then
-    # Tema
+    # Tema (Gnome ou Cinnamon)
     echo " "
+    THEME_NAME="Rounded Rectangle dark transparent"
 
-    {
-        cd faded-dream-cinnamon-theme/ 2> /dev/null
-    } || {
-        git clone https://github.com/aaron-dev-git/faded-dream-cinnamon-theme.git && 
-        sleep 1
-        cd faded-dream-cinnamon-theme/ 
-        echo " "
-    }
-    cp -r "Faded Dream"/ ~/.themes/
-    cd ..
+    if grep -qi 'cinnamon' <<< "$XDG_CURRENT_DESKTOP" || grep -qi 'cinnamon' /usr/share/xsessions/*; then
+        THEME_NAME="Faded Dream"
+        {
+            cd faded-dream-cinnamon-theme/ 2> /dev/null
+        } || {
+            git clone https://github.com/aaron-dev-git/faded-dream-cinnamon-theme.git && 
+            sleep 1
+            cd faded-dream-cinnamon-theme/ 
+            echo " "
+        }
+        cp -r "Faded Dream"/ ~/.themes/
+        cd ..
 
-    if (echo $XDG_CURRENT_DESKTOP | grep Cinnamon 2> /dev/null || ls /usr/share/xsessions/ | grep cinnamon 2> /dev/null); then
         gsettings set org.cinnamon.theme name 'Faded Dream'
         gsettings set org.cinnamon.desktop.interface gtk-theme 'Faded Dream'
         gsettings set org.cinnamon.desktop.wm.preferences theme 'Faded Dream'
         gsettings set org.cinnamon.desktop.interface clock-show-date true
     else
-        gsettings set org.gnome.desktop.interface gtk-theme 'Faded Dream'
-        gsettings set org.gnome.desktop.wm.preferences theme 'Faded Dream'
+        {
+            cd Rounded-Rectangle-dark-transparent/ 2> /dev/null
+        } || {
+            git clone https://github.com/metro2222/Rounded-Rectangle-dark-transparent.git && 
+            sleep 1
+            cd Rounded-Rectangle-dark-transparent/
+            echo " "
+        }
+        mkdir ~/.themes/ 2> /dev/null
+        cp -r "Rounded-Rectangle-dark-transparent"/ ~/.themes/
+        cd ..
+
+        gsettings set org.gnome.desktop.interface gtk-theme 'Rounded-Rectangle-dark-transparent'
+        gsettings set org.gnome.desktop.wm.preferences theme 'Rounded-Rectangle-dark-transparent'
         gsettings set org.gnome.desktop.interface clock-show-date true
-        gsettings set org.gnome.shell.extensions.user-theme name 'Faded Dream'
+        gsettings set org.gnome.shell.extensions.user-theme name 'Rounded-Rectangle-dark-transparent'
     fi
 
-    echo "<>The theme setted to Faded Dream<>"
+    echo "<>The theme setted to ${THEME_NAME}<>"
     echo " "
 
     # Terminais
