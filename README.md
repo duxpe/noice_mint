@@ -23,7 +23,9 @@ Fiz ele especificamente para o Linux Mint, pois os computadores da minha faculda
 
  3. **Coloque seus Wallpapers na pasta `./wallpapers/`:**
 
-    Caso precise, baixe um pack pronto de wallpapers aqui: [Drive com alguns Wallpapers](https://drive.google.com/drive/folders/1G1pNnEjjxD0TK8AbD9YDL7QGirw2RxqT?usp=sharing)
+    Caso precise, baixe um pack pronto de wallpapers aqui:
+    - [Drive com alguns Wallpapers (1200+)](https://drive.google.com/drive/folders/1G1pNnEjjxD0TK8AbD9YDL7QGirw2RxqT?usp=sharing)
+    - [Drive com menos Wallpapers e com comprensão de imagem (72)](https://drive.google.com/drive/folders/1277HLoLBYSN4nrad76z_lJ3k-H4VvD8f?usp=sharing)
 
 4. **Execute o script:**
     ```sh
