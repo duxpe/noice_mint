@@ -141,10 +141,17 @@ if ((FLAG_WALLPAPER_ONLY==0)); then
     cp -r "Faded Dream"/ ~/.themes/
     cd ..
 
-    gsettings set org.cinnamon.theme name 'Faded Dream'
-    gsettings set org.cinnamon.desktop.interface gtk-theme 'Faded Dream'
-    gsettings set org.cinnamon.desktop.wm.preferences theme 'Faded Dream'
-    gsettings set org.cinnamon.desktop.interface clock-show-date true
+    if (echo $XDG_CURRENT_DESKTOP | grep Cinnamon 2> /dev/null || ls /usr/share/xsessions/ | grep cinnamon 2> /dev/null); then
+        gsettings set org.cinnamon.theme name 'Faded Dream'
+        gsettings set org.cinnamon.desktop.interface gtk-theme 'Faded Dream'
+        gsettings set org.cinnamon.desktop.wm.preferences theme 'Faded Dream'
+        gsettings set org.cinnamon.desktop.interface clock-show-date true
+    else
+        gsettings set org.gnome.desktop.interface gtk-theme 'Faded Dream'
+        gsettings set org.gnome.desktop.wm.preferences theme 'Faded Dream'
+        gsettings set org.gnome.desktop.interface clock-show-date true
+        gsettings set org.gnome.shell.extensions.user-theme name 'Faded Dream'
+    fi
 
     echo "<>The theme setted to Faded Dream<>"
     echo " "
